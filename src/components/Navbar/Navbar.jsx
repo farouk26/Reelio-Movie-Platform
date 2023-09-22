@@ -13,7 +13,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar bg-gradient-to-r from-sky-950 to-slate-900">
+    <nav className="navbar h-20 bg-gradient-to-r from-sky-950 to-slate-900">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">

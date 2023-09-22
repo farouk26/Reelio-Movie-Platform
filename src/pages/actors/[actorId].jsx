@@ -60,14 +60,11 @@ function ActorDetailsPage() {
       </div>
 
       {/* Related Movies*/}
-      <div
-        className="mt-8"
-        style={{ marginLeft: 91, marginRight: 91, paddingBottom: 20 }}
-      >
+      <div className="mt-8 pl-4 pr-4">
         <h2 className="text-2xl font-semibold mb-4 text-center bg-gradient-to-r from-sky-950 to-slate-500 md:text-center lg:text-start w-full md:w-full p-1 rounded lg:w-1/3 mr-auto bg-slate-800">
           RELATED MOVIES
         </h2>
-        <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-col-4 lg:grid-cols-4 w-full gap-4">
           {relatedMovies?.slice(0, 4).map((movie) => (
             <Link key={movie.name} href={`/movies/${movie.id}`}>
               <MovieCard {...movie} />

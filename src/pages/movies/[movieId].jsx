@@ -1,3 +1,4 @@
+import { FaStar } from "react-icons/fa"
 import Image from "next/image"
 import Link from "next/link"
 import ActorsCard from "@/components/Cards/ActorsCard"
@@ -38,45 +39,47 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             <h1 className=" mb-2 ml-0 text-4xl tracking-tight font-extrabold text-white">
               {movieData.title}
             </h1>
-            <div className="flex items-center mb-4">
-              <p className="mr-2">
+            <div className="flex items-center justify-start mb-4">
+              <p className="mr-4">
                 {movieData.original_language?.toUpperCase()}
               </p>
-              <p>{movieData.runtime} min</p>
-              <p className="mr-2 ml-3">⭐{movieData.vote_average}</p>
+              <p className="mr-4">{movieData.runtime} min</p>
+              <p className="flex justify-between mr-4">
+                <span className="text-yellow-200 mr-2 mt-1">
+                  <FaStar />
+                </span>
+                {movieData.vote_average}
+              </p>
               <p className="mr-1">({movieData.vote_count} Votes)</p>
             </div>
-            <p className="mb-2 text-sm">{movieData.overview}</p>
+            <p className="mb-2 text-base">{movieData.overview}</p>
             <div className="text-lg">
               <ul>
                 <li>
-                  <span className="text-white">Genres:</span>{" "}
+                  <span className="text-white">
+                    <strong>Genres :</strong>
+                  </span>{" "}
                   {movieData.genres?.map((genre) => genre.name).join(", ")}
                 </li>
                 <li>
-                  <span className="text-white">Release date:</span>{" "}
+                  <span className="text-white">
+                    <strong>Release Date :</strong>
+                  </span>{" "}
                   {movieData.release_date}
                 </li>
                 <li>
-                  <span className="text-white">Director:</span>{" "}
+                  <span className="text-white">
+                    <strong>Director :</strong>
+                  </span>{" "}
                   {director ? director.name : "N/A"}
                 </li>
                 <li>
                   <div className="text-sm">
                     <ul>
-                      <li>
-                        <span className="text-white">Genres:</span>{" "}
-                        {movieData?.genres
-                          ?.map((genre) => genre.name)
-                          .join(", ")}
-                      </li>
-                      <li>
-                        <span className="text-white">Release date:</span>{" "}
-                        {movieData?.release_date}
-                      </li>
-
-                      <div className="flex  items-center">
-                        <span className="text-white">Production:</span>{" "}
+                      <div className="flex  items-center mt-2">
+                        <span className="text-white text-base">
+                          <strong>Production :</strong>
+                        </span>{" "}
                         <div className="flex ml-4 space-x-4">
                           {movieData?.production_companies
                             ?.slice(0, 3)
@@ -88,9 +91,11 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                                 <img
                                   src={`https://image.tmdb.org/t/p/w92${company.logo_path}`}
                                   alt={company.name}
-                                  className="w-6 h-6 rounded-full"
+                                  className="w-6 h-6 rounded-full mr-2"
                                 />
-                                <span>{company.name}</span>
+                                <span>
+                                  <strong>{company.name}</strong>
+                                </span>
                               </div>
                             ))}
                         </div>
@@ -101,44 +106,14 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
               </ul>
             </div>
           </div>
-
-          <div className="mt-1 flex flex-col mr-4 items-center gap-2 lg:block hidden">
-            <div className="mb-2 ml-2 text-4xl text-center center tracking-tight font-extrabold text-white">
-              Related Movies
-            </div>
-            {relatedData?.results?.slice(0, 3).map((movie) => (
-              <div
-                key={movie.id}
-                className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-black"
-              >
-                <Link href={`/movies/${movie.id}`}>
-                  <div className="grid grid-cols-6 p-2 gap-y-2">
-                    <div>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        className="max-w-20 max-h-20 rounded-sm"
-                        alt={movie.title}
-                      />
-                    </div>
-                    <div className="col-span-5 md:col-span-4 ml-4">
-                      <p className="text-white font-bold">{movie.title}</p>
-                      <p className="text-gray-400">
-                        Release date: {movie.release_date}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
       <div className="mb-4 ml-4 text-4xl tracking-tight font-extrabold text-gray-900 ">
         Cast
       </div>
-      <div className="mt-6 grid p-4 grid-cols-5 gap-4">
-        {creditsData?.cast?.slice(0, 5).map((actor) => (
+      <div className="mt-6 grid p-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {creditsData?.cast?.slice(0, 6).map((actor) => (
           <Link key={actor.id} href={`/actors/actorId?id=${actor.id}`}>
             <ActorsCard actor={actor} />
           </Link>

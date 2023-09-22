@@ -18,7 +18,7 @@ export async function getStaticProps() {
 //pass the data fetched as props
 function Actors({ popularActors }) {
   return (
-    <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
+    <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-200">
       <Navbar />
       <div
         className="container mx-auto mt-5"
@@ -28,7 +28,7 @@ function Actors({ popularActors }) {
           POPULAR ACTORS
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {popularActors.results.map((actor) => (
             <Link key={actor.name} href={`/actors/actorId?id=${actor.id}`}>
               <ActorsCard actor={actor} />

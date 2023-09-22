@@ -45,12 +45,13 @@ const MovieList = () => {
     <div className="bg-gray-900 text-white">
       <Navbar />
       <h1 className="text-4xl font-bold mb-4">{getMovieListHeading()}</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 gap-4 pl-4 pr-4">
         {movies?.map((movie) => (
-          <div key={movie.id} className="bg-gray-800 p-2 rounded-lg">
+          <div key={movie.id}>
             <Link href={`/movies/${movie.id}`}>
               <MovieCard
                 title={movie.title}
+                vote_average={movie.vote_average}
                 release_date={movie.release_date}
                 overview={movie.overview}
                 popularity={movie.popularity}
