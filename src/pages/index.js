@@ -1,10 +1,10 @@
 import MovieLoop from "@/components/Cards/Loop"
 import MovieCard from "@/components/Cards/Movie-Card"
-import SideCard from "@/components/Cards/Side-Card"
 import { fetcher } from "@/utils/API"
 import Navbar from "@/components/Navbar/Navbar"
 import Link from "next/link"
 import Footer from "@/components/Footer/Footer"
+import SeriesCard from "@/components/Cards/SeriesCard"
 
 export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
@@ -28,31 +28,17 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
         })}
       </div>
       <h1 className=" rounded rounded-l-none pl-2 pt-1 pb-1 bg-gradient-to-r from-sky-950 to-slate-500 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-start mr-auto text-3xl mt-10 mb-10">
-        <strong>TRENDING MOVIES</strong>
+        <strong>LATEST TV SHOWS</strong>
       </h1>
       <div className="wrapper pl-4 pr-4 grid grid-cols-8 gap-4 pb-4">
-        <div className="second-container col-span-8 md:col-span-6 lg:col-span-6">
+        <div className="second-container col-span-8 md:col-span-8 lg:col-span-8">
           <div className="latest-movies-section grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
-            {trendingMovies?.results.slice(0, 18).map((movie) => {
-              return (
-                <div key={movie.id}>
-                  <Link href={`/movies/${movie.id}`}>
-                    <MovieCard {...movie} />
-                  </Link>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-        <div className="side-content col-span-8 md:col-span-2 lg-col-span-2">
-          <h1 className="w-full bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500 text-center mr-auto text-2xl mb-10 rounded rounded-r-none p-1">
-            POPULAR TV SHOWS
-          </h1>
-          <div className="grid grid-cols-1 gap-4">
-            {popularSeries?.results.slice(0, 12).map((series) => {
+            {popularSeries?.results.slice(0, 18).map((series) => {
               return (
                 <div key={series.id}>
-                  <SideCard {...series} />
+                  <Link href={`/tv/${series.id}`}>
+                    <SeriesCard {...series} />
+                  </Link>
                 </div>
               )
             })}
@@ -65,7 +51,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
 }
 
 //Fetch Side
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const latestMoviesData = await fetcher("trending/movie/day")
   const trendingMoviesData = await fetcher("movie/top_rated")
   const popularSeriesData = await fetcher("trending/tv/day")
