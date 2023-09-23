@@ -3,7 +3,7 @@ import Image from "next/image"
 function ActorsCard({ actor }) {
   const profilePath = actor.profile_path
   return (
-    <div className="card bg-slate-800 shadow-xl " style={{ height: "300px" }}>
+    <div className="card bg-gray-900 shadow-xl " style={{ height: "300px" }}>
       <figure className="h-56">
         <img
           src={`https://image.tmdb.org/t/p/w500${profilePath}`}

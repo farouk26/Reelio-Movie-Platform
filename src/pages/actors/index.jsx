@@ -21,10 +21,10 @@ function Actors({ popularActors }) {
     <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-200">
       <Navbar />
       <div
-        className="container mx-auto mt-5"
+        className="container mx-auto mt-5 pl-4 pr-4"
         style={{ marginTop: 0, paddingTop: 20, paddingBottom: 20 }}
       >
-        <h1 className="text-3xl font-semibold mb-5 bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500 p-2 text-center md:text-center lg:text-center">
+        <h1 className="text-3xl rounded font-semibold mb-5 bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500 p-1 text-center md:text-center lg:text-center">
           POPULAR ACTORS
         </h1>
 
